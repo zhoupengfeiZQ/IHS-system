@@ -35,6 +35,25 @@ public class Page implements Serializable{
 	@JsonProperty(value="number_elements")
 	/**当页总条数*/
 	private Integer numberElements;
+	
+	private  int page=1;//当前�? easyui必须是此名称
+	private int rows=5;//跨度  easyui必须是此名称
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
 
 	public Integer getPageNo() {
 		return pageNo;

@@ -11,7 +11,15 @@ package com.ihs.convergence.utils.enums;
  */
 public enum ErrorTypes {
 
-	NULL_POINT("java.lang.NullPointerException");
+	NULL_POINT("java.lang.NullPointerException"),
+	//人事
+	PERSON_QUERY_ERROR("person query error"),
+	//科室
+	DEPART_UPDATE_ERROR("depart update error"),
+	DEPART_DELETE_ERROR("depart delete error"),
+	DEPART_INSERT_ERROR("depart insert error"),
+	DEPART_QUERY_ERROR("depart query error");
+	
 	
 	private String type;
 	ErrorTypes(String type) {

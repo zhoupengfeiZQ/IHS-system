@@ -147,5 +147,15 @@
 		 	<groupId>org.springframework.boot</groupId>
 		 	<artifactId>spring-boot-starter-jta-narayana</artifactId>
 		 </dependency>
-  </dependencies>
+		 <dependency>
+		 	<groupId>org.apache.hadoop</groupId>
+		 	<artifactId>hadoop-core</artifactId>
+		 	<version>1.0.0</version>
+		 </dependency>
+		 <dependency>
+		 	<groupId>org.jgroups</groupId>
+		 	<artifactId>jgroups</artifactId>
+		 	<version>3.6.9.Final</version>
+		 </dependency>
+ </dependencies>
 </project>

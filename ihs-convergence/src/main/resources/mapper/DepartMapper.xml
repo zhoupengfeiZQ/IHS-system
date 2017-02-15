@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ihs.convergence.dao.DepartDao">
+	<select id="selectDeparts" parameterType="com.ihs.convergence.entity.Depart" resultType="com.ihs.convergence.entity.Depart">
+	SELECT
+		id id,
+		name name,
+		summary summary,
+		create_by createBy,
+		create_date createDate
+	FROM
+		ihs_depart
+	<where>
+		<if test="name!=null and name!=''">
+		name like '%${name}%'
+		</if>
+		<if test="summary!=null and summary!=''">
+		and summary like '%${summary}%'
+		</if>
+	</where>
+	</select>
+	
+	<insert id="insertDeparts" parameterType="com.ihs.convergence.entity.Depart">
+	INSERT INTO ihs_depart (
+		id,
+		name,
+		summary,
+		create_by,
+		create_date
+	)
+	VALUES
+		(
+		#{id},
+		#{name},
+		#{summary},
+		#{createBy},
+		#{createDate}
+		)
+	</insert>
+	
+	<delete id="deleteDepart" parameterType="com.ihs.convergence.entity.Depart">
+	delete from ihs_depart where id=#{id}
+	</delete>
+	
+	<update id="updateDepart" parameterType="com.ihs.convergence.entity.Depart">
+	UPDATE ihs_depart
+	<set>
+		<if test="name!=null and name!=''">
+			name=#{name},
+		</if>
+		 summary=#{summary}
+	</set>
+	WHERE
+	id = #{id}
+	</update>
+
+</mapper>

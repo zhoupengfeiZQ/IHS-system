@@ -16,7 +16,7 @@ import javax.servlet.ServletRequest;
  */
 public class CommonUtil {
     //convergence 模块url统一前缀
-    public static final String 	CONVERGENCE_URL_PREFIX = "convergence";
+    public static final String 	IHS_URL_PREFIX = "ihs";
     //url produces xml
     public static final String PRODUCES_APPLICATION_XML = "application/xml;charset=UTF-8";
     //url produces json
