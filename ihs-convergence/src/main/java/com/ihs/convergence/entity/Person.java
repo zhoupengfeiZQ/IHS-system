@@ -1,8 +1,6 @@
 package com.ihs.convergence.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-
 public class Person implements Serializable{
 	/**
 	 * 
@@ -23,9 +21,9 @@ public class Person implements Serializable{
 	
 	private String phone;
 	
-	private Date hiredate;
+	private String hiredate;
 	
-	private Date leavedate;
+	private String leavedate;
 	
 	private String status;
 	
@@ -73,16 +71,16 @@ public class Person implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Date getHiredate() {
+	public String getHiredate() {
 		return hiredate;
 	}
-	public void setHiredate(Date hiredate) {
+	public void setHiredate(String hiredate) {
 		this.hiredate = hiredate;
 	}
-	public Date getLeavedate() {
+	public String getLeavedate() {
 		return leavedate;
 	}
-	public void setLeavedate(Date leavedate) {
+	public void setLeavedate(String leavedate) {
 		this.leavedate = leavedate;
 	}
 	public String getStatus() {

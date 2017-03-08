@@ -1,5 +1,6 @@
 package com.ihs.convergence.controller.depart;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ihs.convergence.dao.DepartDao;
 import com.ihs.convergence.entity.Depart;
 import com.ihs.convergence.service.depart.DepartService;
 import com.ihs.convergence.utils.CommonUtil;
@@ -35,6 +37,8 @@ import com.ihs.convergence.utils.page.Page;
 public class DepartController {
 	@Autowired
 	private DepartService departService;
+	@Autowired
+	private DepartDao departDao;
 	
 	@Autowired
 	private Snowflake snowflake;
@@ -57,6 +61,17 @@ public class DepartController {
 			Map<String,Object> result=new HashMap<String, Object>();
 			result.put("result", e);
 			return result;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/totalDeparts", method = RequestMethod.GET)
+	public List<Depart> getTotalDeparts(Depart depart,Page page ){
+		try {
+			List<Depart> list=departDao.selectDeparts(depart);
+		return list;
+		} catch (ConvergenceException e) {
+			throw e;
 		}
 	}
 

@@ -5,4 +5,81 @@
 	<select id="selectPersonById" parameterType="com.ihs.convergence.entity.Person" resultType="com.ihs.convergence.entity.Person">
 	SELECT id,name,sex,depart,position,authority,phone,hiredate,leavedate,status,password from ihs_person where id=#{id}
 	</select>
+	
+	<select id="selectPerson" parameterType="com.ihs.convergence.entity.Person" resultType="com.ihs.convergence.entity.Person">
+	SELECT
+		id id,
+		name name,
+		sex sex,
+		depart depart,
+		position position,
+		authority authority,
+		phone phone,
+		hiredate hiredate,
+		leavedate leavedate,
+		status status,
+		password password
+	FROM
+		ihs_person
+	<where>
+		<if test="name!=null and name!=''">
+		name like '%${name}%'
+		</if>
+		<if test="depart!=null and depart!=''">
+		and depart like '%${depart}%'
+		</if>
+		<if test="position!=null and position!=''">
+		and position like '%${position}%'
+		</if>
+	</where>
+	</select>
+	
+	<insert id="insertPerson" parameterType="com.ihs.convergence.entity.Person">
+	INSERT INTO ihs_person (
+		name,
+		sex,
+		depart,
+		position,
+		authority,
+		phone,
+		hiredate,
+		leavedate,
+		password
+	)
+	VALUES
+		(
+		#{name},
+		#{sex},
+		#{depart},
+		#{position},
+		#{authority},
+		#{phone},
+		#{hiredate},
+		#{leavedate},
+		'2017'
+		)
+	</insert>
+	
+	<delete id="deletePerson" parameterType="com.ihs.convergence.entity.Person">
+	delete from ihs_person where id=#{id}
+	</delete>
+	
+	<update id="updatePerson" parameterType="com.ihs.convergence.entity.Person">
+	UPDATE ihs_person
+	<set>
+		<if test="name!=null and name!=''">
+			name=#{name},
+		</if>
+		 sex=#{sex},
+		 depart=#{depart},
+		 position=#{position},
+		 authority=#{authority},
+		 phone=#{phone},
+		 hiredate=#{hiredate},
+		 leavedate=#{leavedate},
+		 status=#{status}
+	</set>
+	WHERE
+		id=#{id}
+	</update>
 </mapper>

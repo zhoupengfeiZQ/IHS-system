@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ihs.convergence.dao.PharmacyDao">
+	<select id="selectDrug" parameterType="com.ihs.convergence.entity.Drug" resultType="com.ihs.convergence.entity.Drug">
+	SELECT
+		drug_id drugId,
+		drug_name drugName,
+		composition composition,
+		price price,
+		package_unit packageUnit,
+		efficacy efficacy,
+		matters matters,
+		nature nature,
+		label label,
+		number number
+	FROM
+		ihs_drug
+	<where>
+		<if test="drugName!=null and drugName!=''">
+		drug_name like '%${drugName}%'
+		</if>
+		<if test="nature!=null and nature!=''">
+		and nature like '%${nature}%'
+		</if>
+		<if test="label!=null and label!=''">
+		and label like '%${label}%'
+		</if>
+		<if test="efficacy!=null and efficacy!=''">
+		and efficacy like '%${efficacy}%'
+		</if>
+	</where>
+	</select>
+	
+	<insert id="insertDrug" parameterType="com.ihs.convergence.entity.Drug">
+	INSERT INTO ihs_drug (
+		drug_id,
+		drug_name,
+		composition,
+		price,
+		package_unit,
+		efficacy,
+		matters,
+		nature,
+		label,
+		number
+	)
+	VALUES
+		(
+		#{drugId},
+		#{drugName},
+		#{composition},
+		#{price},
+		#{packageUnit},
+		#{efficacy},
+		#{matters},
+		#{nature},
+		#{label},
+		#{number}
+		)
+	</insert>
+	
+	<delete id="deleteDrug" parameterType="com.ihs.convergence.entity.Drug">
+	delete from ihs_drug where drug_id=#{drugId}
+	</delete>
+	
+	<update id="updateDrug" parameterType="com.ihs.convergence.entity.Drug">
+	UPDATE ihs_drug
+	<set>
+		<if test="drugName!=null and drugName!=''">
+			drug_name=#{drugName},
+		</if>
+		 composition=#{composition},
+		 price=#{price},
+		 package_unit=#{packageUnit},
+		 efficacy=#{efficacy},
+		 matters=#{matters},
+		 nature=#{nature},
+		 label=#{label},
+		 number=#{number}
+	</set>
+	WHERE
+		drug_id=#{drugId}
+	</update>
+
+</mapper>

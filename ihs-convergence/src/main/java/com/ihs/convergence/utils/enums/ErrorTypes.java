@@ -14,6 +14,15 @@ public enum ErrorTypes {
 	NULL_POINT("java.lang.NullPointerException"),
 	//人事
 	PERSON_QUERY_ERROR("person query error"),
+	PERSON_UPDATE_ERROR("person update error"),
+	PERSON_DELETE_ERROR("person delete error"),
+	PERSON_INSERT_ERROR("person insert error"),
+	//药房
+	PHARMACY_UPDATE_ERROR("pharmacy update error"),
+	PHARMACY_DELETE_ERROR("pharmacy delete error"),
+	PHARMACY_INSERT_ERROR("pharmacy insert error"),
+	PHARMACY_QUERY_ERROR("pharmacy query error"),
+	
 	//科室
 	DEPART_UPDATE_ERROR("depart update error"),
 	DEPART_DELETE_ERROR("depart delete error"),
