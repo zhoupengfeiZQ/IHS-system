@@ -7,11 +7,13 @@ import com.ihs.convergence.utils.page.Page;
 
 public interface PersonService {
 	
-	public Map<String, Object> selectPersonsByPage(Person drug,Page page);
+	public Map<String, Object> selectPersonsByPage(Person person,Page page);
 	
-	public boolean insertPersons(Person drug);
+	public Person  selectPersonsDetail(Person person);
 	
-	public boolean deletePersons(Person drug);
+	public boolean insertPersons(Person person);
 	
-	public boolean updatePersons(Person drug);
+	public boolean deletePersons(Person person);
+	
+	public boolean updatePersons(Person person);
 }

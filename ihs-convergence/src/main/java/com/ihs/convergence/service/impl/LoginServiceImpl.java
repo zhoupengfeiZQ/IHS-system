@@ -24,7 +24,7 @@ private PersonDao personDao;
 			throw new ConvergenceDataTransferException(ConvergenceCode.INVALID_ACCOUNT_OR_PASSWORD.getCode(), ErrorTypes.PERSON_QUERY_ERROR.getType(), ConvergenceCode.INVALID_ACCOUNT_OR_PASSWORD.getMessage());
 		}
 		try {
-			Person	resultPerson=personDao.selectPersonById(person);
+			Person	resultPerson=personDao.selectPersonDetail(person);
 			return resultPerson;
 		} catch (Exception e) {
 			throw new ConvergenceDataAccessException(ConvergenceCode.INNER_ERROR.getCode(), ErrorTypes.PERSON_QUERY_ERROR.getType(), e.getMessage(), e);

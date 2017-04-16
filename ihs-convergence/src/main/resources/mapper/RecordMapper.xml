@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ihs.convergence.dao.RecordDao">
+<select id="selectRecord" parameterType="com.ihs.convergence.entity.Record" resultType="com.ihs.convergence.entity.Record">
+	SELECT
+		record_id recordId,
+		registration_id registrationId,
+		name name,
+		account account,
+		age age,
+		depart depart,
+		history history,
+		complain complain,
+		result result,
+		suggestion suggestion,
+		prescription prescription,
+		doctor_id doctorId,
+		doctor doctor,
+		date date
+	FROM
+		ihs_record
+	<where>
+		<if test="doctorId!=0">
+			doctor_id=#{doctorId}
+		</if>
+		<if test="account!=0">
+			and account=#{account}
+		</if>
+		<if test="name!=null and name!=''">
+			and name like '%${name}%'
+		</if>
+		<if test="depart!=null and depart!=''">
+			and depart like '%${depart}%'
+		</if>
+		<if test="doctor!=null and doctor!=''">
+			and doctor like '%${doctor}%'
+		</if>
+	</where>
+	
+</select>
+
+	<insert id="insertRecord" parameterType="com.ihs.convergence.entity.Record">
+	INSERT INTO ihs_record (
+		record_id,
+		registration_id,
+		NAME,
+		account,
+		age,
+		depart,
+		history,
+		complain,
+		result,
+		suggestion,
+		prescription,
+		doctor_id,
+		doctor,
+		date
+	)
+	VALUES
+		(
+		#{recordId},
+		#{registrationId},
+		#{name},
+		#{account},
+		#{age},
+		#{depart},
+		#{history},
+		#{complain},
+		#{result},
+		#{suggestion},
+		#{prescription},
+		#{doctorId},
+		#{doctor},
+		#{date}
+		)
+	</insert>
+</mapper>

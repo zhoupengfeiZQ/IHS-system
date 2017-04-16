@@ -89,7 +89,6 @@ public class DepartController {
 			depart.setId(id);
 			depart.setCreateBy(1);
 			depart.setCreateDate(DateUtils.getDefaultCurrentStrDate());
-			System.out.println(depart.getCreateDate());
 			departService.insertDeparts(depart);
 			return ConvergenceAPIUtil.biuldSuccessRespons(true);
 		} catch (ConvergenceException e) {

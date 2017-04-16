@@ -2,8 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.ihs.convergence.dao.PersonDao">
-	<select id="selectPersonById" parameterType="com.ihs.convergence.entity.Person" resultType="com.ihs.convergence.entity.Person">
-	SELECT id,name,sex,depart,position,authority,phone,hiredate,leavedate,status,password from ihs_person where id=#{id}
+	<select id="selectPersonDetail" parameterType="com.ihs.convergence.entity.Person" resultType="com.ihs.convergence.entity.Person">
+	SELECT
+		id id,
+		name name,
+		sex sex,
+		depart depart,
+		position position,
+		authority authority,
+		phone phone,
+		hiredate hiredate,
+		leavedate leavedate,
+		status status,
+		password password
+	FROM
+		ihs_person
+	<where>
+		<if test="id!=0">
+		id=#{id}
+		</if>
+		<if test="name!=null and name!=''">
+		and name=#{name}
+		</if>
+	</where>
 	</select>
 	
 	<select id="selectPerson" parameterType="com.ihs.convergence.entity.Person" resultType="com.ihs.convergence.entity.Person">

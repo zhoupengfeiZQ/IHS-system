@@ -6,7 +6,8 @@ public class Person implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -1789805062900598852L;
-
+	private String identity;
+	
 	private int id;
 	
 	private String name;
@@ -94,6 +95,12 @@ public class Person implements Serializable{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getIdentity() {
+		return identity;
+	}
+	public void setIdentity(String identity) {
+		this.identity = identity;
 	}
 	
 	

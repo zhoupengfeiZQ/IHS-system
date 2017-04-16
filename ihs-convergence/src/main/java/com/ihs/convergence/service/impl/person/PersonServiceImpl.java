@@ -86,4 +86,15 @@ public class PersonServiceImpl implements PersonService{
 		
 	}
 
+	@Override
+	public Person selectPersonsDetail(Person person) {
+		try {
+		return	personDao.selectPersonDetail(person);
+		} catch (Exception e) {
+			throw new ConvergenceDataAccessException(ConvergenceCode.INNER_ERROR.getCode(), ErrorTypes.PERSON_QUERY_ERROR.getType(), e.getMessage(), e);
+			
+		}
+		
+	}
+
 }

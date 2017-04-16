@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ihs.convergence.dao.OperationDao">
+	<select id="selectOperation" parameterType="com.ihs.convergence.entity.Operation" resultType="com.ihs.convergence.entity.Operation">
+	SELECT
+		operation_id operationId,
+		patient patient,
+		account account,
+		doctor doctor,
+		doctor_id doctorId,
+		record_id recordId,
+		doctor_view doctorView,
+		patient_view patientView,
+		family_view familyView,
+		approval_view approvalView,
+		approver approver,
+		status status,
+		date date
+	FROM
+		ihs_operation
+	<where>
+		<if test="patient!=null and patient!=''">
+		patient like '%${patient}%'
+		</if>
+		<if test="doctor!=null and doctor!=''">
+		and doctor like '%${doctor}%'
+		</if>
+		<if test="doctorId!=0">
+		and doctor_id=#{doctorId} 
+		</if>
+		<if test="account!=0">
+		and account=#{account} 
+		</if>
+	</where>
+		ORDER BY date DESC
+	</select>
+	
+	<select id="selectOperationDetail" parameterType="com.ihs.convergence.entity.Operation" resultType="com.ihs.convergence.entity.Operation">
+	SELECT
+		operation_id operationId,
+		patient patient,
+		account account,
+		doctor doctor,
+		doctor_id doctorId,
+		record_id recordId,
+		doctor_view doctorView,
+		patient_view patientView,
+		family_view familyView,
+		approval_view approvalView,
+		approver approver,
+		status status,
+		date date
+	FROM
+		ihs_operation
+	<where>
+		<if test="operationId!=0">
+		operation_id=#{operationId}
+		</if>
+	</where>
+	</select>
+	
+	<insert id="insertOperation" parameterType="com.ihs.convergence.entity.Operation">
+	INSERT INTO ihs_operation (
+		operation_id,
+		patient,
+		account,
+		doctor,
+		doctor_id,
+		record_id,
+		doctor_view,
+		patient_view,
+		family_view,
+		approval_view,
+		approver,
+		date
+	)
+	VALUES
+		(
+		#{operationId},
+		#{patient},
+		#{account},
+		#{doctor},
+		#{doctorId},
+		#{recordId},
+		#{doctorView},
+		#{patientView},
+		#{familyView},
+		#{approvalView},
+		#{approver},
+		#{date}
+		)
+	</insert>
+	
+	<update id="updateOperation" parameterType="com.ihs.convergence.entity.Operation">
+	UPDATE ihs_operation
+	<set>
+		<if test="patientView!=null and patientView!=''">
+		patient_view =#{patientView},
+		</if>
+		<if test="familyView!=null and familyView!=''">
+		family_view =#{familyView},
+		</if>
+		<if test="approvalView!=null and approvalView!=''">
+		approval_view =#{approvalView},
+		</if>
+		<if test="approver!=null and approver!=''">
+		approver =#{approver},
+		</if>
+		<if test="status!=null and status!=''">
+		status =#{status}
+		</if>
+	</set>
+	WHERE
+		operation_id=#{operationId}
+	</update>
+</mapper>

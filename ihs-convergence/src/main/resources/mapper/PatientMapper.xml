@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ihs.convergence.dao.PatientDao">
+	<select id="selectPatientDetail" parameterType="com.ihs.convergence.entity.Patient" resultType="com.ihs.convergence.entity.Patient">
+	SELECT
+		account account,
+		password password,
+		username username,
+		id_card idCard,
+		email email,
+		country country,
+		nation nation,
+		address address,
+		marital_status maritalStatus,
+		age age,
+		sex sex,
+		phone phone,
+		history history,
+		authority authority
+	FROM
+		ihs_patient
+	<where>
+		<if test="email!=null and email!=''">
+		email=#{email}
+		</if>
+		<if test="account!=null and account!=''">
+		and account=#{account}
+		</if>
+	</where>
+		
+	</select>
+	
+	<insert id="insertPatient" parameterType="com.ihs.convergence.entity.Patient">
+	INSERT INTO ihs_patient (
+		account,
+		password,
+		username,
+		id_card,
+		email,
+		country,
+		nation,
+		address,
+		marital_status,
+		age,
+		sex,
+		phone,
+		history
+	)
+	VALUES
+		(
+		#{account},
+		#{password},
+		#{username},
+		#{idCard},
+		#{email},
+		#{country},
+		#{nation},
+		#{address},
+		#{maritalStatus},
+		#{age},
+		#{sex},
+		#{phone},
+		#{history}
+		)
+	</insert>
+	
+	
+	<update id="updatePatient" parameterType="com.ihs.convergence.entity.Patient">
+	UPDATE ihs_patient
+	<set>
+		<if test="password!=null and password!=''">
+		password=#{password},
+		</if>
+		<if test="username!=null and username!=''">
+		username=#{username},
+		</if>
+		<if test="idCard!=0">
+		id_card=#{idCard},
+		</if>
+		<if test="country!=null and country!=''">
+		country=#{country},
+		</if>
+		<if test="nation!=null and nation!=''">
+		nation=#{nation},
+		</if>
+		<if test="address!=null and address!=''">
+		address=#{address},
+		</if>
+		<if test="maritalStatus!=null and maritalStatus!=''">
+		marital_status=#{maritalStatus},
+		</if>
+		<if test="age!=0">
+		age=#{age},
+		</if>
+		<if test="sex!=null and sex!=''">
+		sex=#{sex},
+		</if>
+		<if test="phone!=null and phone!=''">
+		phone=#{phone},
+		</if>
+		<if test="history!=null and history!=''">
+		history=#{history}
+		</if>
+	</set>
+	WHERE
+		email = #{email}
+	</update>
+</mapper>

@@ -7,13 +7,13 @@ import com.ihs.convergence.entity.Person;
 
 public interface PersonDao {
 	
-	public Person selectPersonById(Person person);
+	public Person selectPersonDetail(Person person);
 	
-	public List<Person> selectPerson(Person drug);
+	public List<Person> selectPerson(Person person);
 	
-	public boolean insertPerson(Person drug);
+	public boolean insertPerson(Person person);
 	
-	public boolean deletePerson(Person drug);
+	public boolean deletePerson(Person person);
 	
-	public boolean updatePerson(Person drug);
+	public boolean updatePerson(Person person);
 }
