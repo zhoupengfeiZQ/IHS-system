@@ -91,4 +91,39 @@ public class RegistrationController {
 			return result;
 		}
 	}
+	
+	/**
+	 *查询挂号单详情
+	 * @param Registration
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/registrations", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseBaseBean selectRegistrations(Registration registration){
+		try {
+			Registration returnRegistration=registrationService.selectRegistrationsDetail(registration);
+			return ConvergenceAPIUtil.biuldSuccessRespons(returnRegistration);
+		} catch (ConvergenceException e) {
+			return ConvergenceAPIUtil.biuldErrorRespons(e);
+		}
+		
+	}
+	
+	/**
+	 * 取消预约
+	 * @param registration_id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/registrations/{registration_id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseBaseBean cancelRegistration(@PathVariable("registration_id") long registration_id){
+		try {
+			registrationService.cancelRegistration(registration_id);
+			return ConvergenceAPIUtil.biuldSuccessRespons(true);
+		} catch (ConvergenceException e) {
+			return ConvergenceAPIUtil.biuldErrorRespons(e);
+		}
+		
+		
+	}
 }

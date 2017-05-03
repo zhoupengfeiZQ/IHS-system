@@ -37,6 +37,7 @@ public enum ErrorTypes {
 	//挂号
 	REGISTRATION_INSERT_ERROR("registration insert error"),
 	REGISTRATION_QUERY_ERROR("registration query error"),
+	REGISTRATION_UPDATE_ERROR("registration update error"),
 	
 	//病历
 	RECORD_INSERT_ERROR("record insert error"),
@@ -46,6 +47,10 @@ public enum ErrorTypes {
 	OPERATION_INSERT_ERROR("operation insert error"),
 	OPERATION_QUERY_ERROR("operation query error"),
 	OPERATION_UPDATE_ERROR("operation update error"),
+	//离职
+	RESIGNATION_INSERT_ERROR("resignation insert error"),
+	RESIGNATION_QUERY_ERROR("resignation query error"),
+	RESIGNATION_UPDATE_ERROR("resignation update error"),
 	
 	;
 	

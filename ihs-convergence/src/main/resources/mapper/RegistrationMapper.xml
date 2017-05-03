@@ -56,6 +56,23 @@
 		registration_id=#{0}
 </select>
 
+<select id="selectRegistrationsDetail" parameterType="com.ihs.convergence.entity.Registration" resultType="com.ihs.convergence.entity.Registration">
+	SELECT
+			registration_id registrationId,
+			depart depart,
+			doctor_id doctorId,
+			doctor doctor,
+			patient_name patientName,
+			patient_account patientAccount,
+			time time,
+			registration_index registrationIndex,
+			status status
+		FROM
+			ihs_registration 
+		WHERE
+			patient_account=#{patientAccount} and status='待诊'
+</select>
+
 <insert id="insertRegistration" parameterType="com.ihs.convergence.entity.Registration">
 	INSERT INTO ihs_registration (
 		registration_id,
@@ -83,7 +100,9 @@
 	update ihs_registration set status='诊毕' where registration_id=#{registrationId}
 </update>
 
-
+<update id="updateRegistrationsById" parameterType="java.lang.Long">
+	update ihs_registration set status='取消' where registration_id=#{registrationId}
+</update>
 
 </mapper>
 

@@ -81,6 +81,24 @@ public class RegistrationServiceImpl implements RegistrationService{
 		
 	}
 
+	@Override
+	public Registration selectRegistrationsDetail(Registration registration) {
+		try {
+			return	registrationDao.selectRegistrationsDetail(registration);
+			} catch (Exception e) {
+				throw new ConvergenceDataAccessException(ConvergenceCode.INNER_ERROR.getCode(), ErrorTypes.REGISTRATION_QUERY_ERROR.getType(), e.getMessage(), e);
+			}
+	}
+
+	@Transactional
+	public boolean cancelRegistration(long registration_id) {
+		try {
+			return	registrationDao.updateRegistrationsById(registration_id);
+			} catch (Exception e) {
+				throw new ConvergenceDataAccessException(ConvergenceCode.INNER_ERROR.getCode(), ErrorTypes.REGISTRATION_UPDATE_ERROR.getType(), e.getMessage(), e);
+			}
+	}
+
 
 	
 

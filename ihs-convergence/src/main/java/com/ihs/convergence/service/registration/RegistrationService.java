@@ -10,5 +10,9 @@ public interface RegistrationService {
 	
 	public Registration selectRegistrationById(long registration_id);
 	
+	public Registration selectRegistrationsDetail(Registration registration);
+	
 	public boolean addRegistrations(Registration registration);
+	
+	public boolean cancelRegistration(long registration_id);
 }

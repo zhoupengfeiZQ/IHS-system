@@ -65,6 +65,7 @@
 		phone,
 		hiredate,
 		leavedate,
+		status,
 		password
 	)
 	VALUES
@@ -77,6 +78,7 @@
 		#{phone},
 		#{hiredate},
 		#{leavedate},
+		#{status},
 		'2017'
 		)
 	</insert>
@@ -97,10 +99,13 @@
 		 authority=#{authority},
 		 phone=#{phone},
 		 hiredate=#{hiredate},
-		 leavedate=#{leavedate},
 		 status=#{status}
 	</set>
 	WHERE
 		id=#{id}
+	</update>
+	
+	<update id="personResign" parameterType="com.ihs.convergence.entity.Person">
+	UPDATE ihs_person set status='离职',leavedate=#{leavedate} where id=#{id}
 	</update>
 </mapper>

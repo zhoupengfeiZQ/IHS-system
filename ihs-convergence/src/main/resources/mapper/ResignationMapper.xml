@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ihs.convergence.dao.ResignationDao">
+<select id="selectResignation" parameterType="com.ihs.convergence.entity.Resignation" resultType="com.ihs.convergence.entity.Resignation">
+	SELECT
+		id id,
+		name name,
+		number number,
+		depart depart,
+		reason reason,
+		apply_time applyTime,
+		status status,
+		approver approver,
+		approval_view approvalView,
+		approval_time approvalTime
+	FROM
+		ihs_resignation
+	<where>
+		<if test="number!=null and number!=''">
+		number =#{number}
+		</if>
+		<if test="name!=null and name!=''">
+		and name like '%${name}%'
+		</if>
+	</where>
+</select>
+
+<select id="selectResignationDetail" parameterType="com.ihs.convergence.entity.Resignation" resultType="com.ihs.convergence.entity.Resignation">
+	SELECT
+		id id,
+		name name,
+		number number,
+		depart depart,
+		reason reason,
+		apply_time applyTime,
+		status status,
+		approver approver,
+		approval_view approvalView,
+		approval_time approvalTime
+	FROM
+		ihs_resignation
+	<where>
+		<if test="id!=0">
+		id=#{id}
+		</if>
+	</where>
+</select>
+
+<insert id="insertResignation" parameterType="com.ihs.convergence.entity.Resignation">
+INSERT INTO ihs_resignation (
+	id,
+	name,
+	number,
+	depart,
+	reason,
+	apply_time,
+	STATUS
+)
+VALUES
+	(
+		#{id},
+		#{name},
+		#{number},
+		#{depart},
+		#{reason},
+		#{applyTime},
+		'审批中'
+	)
+</insert>
+
+<update id="updateResignation" parameterType="com.ihs.convergence.entity.Resignation">
+	UPDATE ihs_resignation
+	SET 
+		status = '已审批',
+		approver = #{approver},
+		approval_view=#{approvalView},
+		approval_time=#{approvalTime}
+ 	WHERE id=#{id}
+</update>
+	
+</mapper>

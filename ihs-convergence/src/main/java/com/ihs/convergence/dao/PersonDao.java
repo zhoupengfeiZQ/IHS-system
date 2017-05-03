@@ -16,4 +16,6 @@ public interface PersonDao {
 	public boolean deletePerson(Person person);
 	
 	public boolean updatePerson(Person person);
+	
+	public boolean personResign(Person person);
 }
